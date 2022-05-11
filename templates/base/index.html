@@ -27,7 +27,7 @@
         <div id="layout-wrapper">
 
             <header id="page-topbar">
-                <div class="navbar-header"  style="height:50px;" >
+                <div class="navbar-header"  style="height:20px;" >
                     <div class="container-fluid">
                         <div class="float-start">
                             <!-- LOGO -->
@@ -54,20 +54,21 @@
                             <button type="button" class="btn btn-sm px-3 font-size-24 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
                                 <i class="mdi mdi-menu"></i>
                             </button>
+
                         </div>
     
                         <div class="float-end">
     
                             <!-- App Search-->
-                            <form class="app-search d-none d-lg-inline-block">
+                            <!-- <form class="app-search d-none d-lg-inline-block">
                                 <div class="position-relative">
                                     <input type="text" class="form-control" placeholder="Search...">
                                     <span class="fa fa-search text-success"></span>
                                 </div>
-                            </form>
+                            </form> -->
 
     
-                            <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <!-- <div class="dropdown d-inline-block d-lg-none ms-2">
                                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="mdi mdi-magnify"></i>
                                 </button>
@@ -84,11 +85,11 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
 
                 
     
-                            <div class="dropdown d-inline-block ms-1">
+                            <!-- <div class="dropdown d-inline-block ms-1">
                                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="ti-bell"></i>
@@ -200,16 +201,18 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
     
-                            <div class="dropdown d-inline-block">
+
+
+                            <!-- <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" src="{% static 'dist/assets/images/propias/perfil.png' %}"
                                         alt="Header Avatar">
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
+                                    
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle font-size-17 text-muted align-middle me-1"></i> Profile</a>
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-wallet font-size-17 text-muted align-middle me-1"></i> My Wallet</a>
                                     <a class="dropdown-item d-flex align-items-center" href="#"><i class="mdi mdi-cog font-size-17 text-muted align-middle me-1"></i> Settings<span class="badge bg-success ms-auto">11</span></a>
@@ -217,7 +220,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power font-size-17 text-muted align-middle me-1 text-danger"></i> Logout</a>
                                 </div>
-                            </div>
+                            </div> -->
     
                             <!-- <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
@@ -256,7 +259,7 @@
                                     <div class="page-title-box" style="text-align:right; font-size: 0.9rem;">
 
                                         
-                                        <span class="text-white" >Estas Visualizando:</span> <span id="titulo_actual" class="text-success">Pagina de Inicio</span> 
+                                        <span class="text-white" >Vista Actual:</span> <span id="titulo_actual" class="text-success">Pagina de Inicio</span> 
                                         
                                     
                                     </div>
@@ -287,6 +290,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-email">
                                                 <a href="#" class="dropdown-item estudiantes_preg">Pregrado</a>
+                                                <a href="#" class="dropdown-item graduado">Graduados</a>
                                                 <!-- <a href="#" class="dropdown-item">Postgrado</a> -->
 
                                             </div>
@@ -565,12 +569,12 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
-            <div class="main-content">
+            <div class="main-content" >
 
-                <div class="page-content">
-                    <div class="container-fluid" id="contenedor_global">
+                <div class="page-content" >
+                    <div class="container-fluid " id="contenedor_global">
 
-                        <div class="card row col-auto rounded justify-content-center">
+                        <div class="card row col-auto rounded justify-content-center" style="border-top: 50px;">
                             <center>
                                 <img height= "500rem" src="{% static 'dist/assets/images/propias/unicor_acreditada.png' %}" >
                             </center>
@@ -712,6 +716,27 @@
 				// setTimeout(function(){
 				$("#contenedor_global").html(data);
                 $("#titulo_actual").html('<span class="text-success">Docentes > Variables Poblacionales</span> ');
+				// },.2000);
+
+			});
+			
+		});
+
+        $('.graduado').on('click', function(){
+			
+			$.ajax({
+				url:'{% url "graduado" %}',
+				// beforeSend: function(){
+				// 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+				// },
+				type:'POST',
+				data: {},
+				dataType: 'html'
+			}).done(function(data){
+				// console.log(data)
+				// setTimeout(function(){
+				$("#contenedor_global").html(data);
+                $("#titulo_actual").html('<span class="text-success">Estudiantes > Graduados</span> ');
 				// },.2000);
 
 			});

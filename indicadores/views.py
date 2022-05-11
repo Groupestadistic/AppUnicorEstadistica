@@ -13,3 +13,7 @@ def estudiantes_preg(request):
 @method_decorator(csrf_exempt)
 def docentes(request):
     return render(request,'ajax/docentes/docentes.html', {})
+
+@method_decorator(csrf_exempt)
+def graduado(request):
+    return render(request,'ajax/estudiantes/graduado.html', {})
