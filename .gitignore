@@ -1,5 +1,5 @@
-UNICOR/settings.py
-UNICOR/__init__.py
-UNICOR/wsgi.py
-UNICOR/asgi.py
-UNICOR/__pycache__/*
+settings.py
+__init__.py
+wsgi.py
+asgi.py
+__pycache__
