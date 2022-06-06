@@ -2,6 +2,7 @@ from email.mime import base
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 def index(request):
     return render(request,'base/index.html',{})

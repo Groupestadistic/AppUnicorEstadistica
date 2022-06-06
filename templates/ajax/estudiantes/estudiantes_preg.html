@@ -1,5 +1,160 @@
-<!-- contenedor de Estudiantes -->
-<div class="row col-auto rounded justify-content-center">
+<!-- contener de estudiantes de pregrado -->
 
-    <div class='card row col-lg-10 rounded justify-content-center ml-4' id='viz1651870610515' style='position: relative; top: -60px;'><noscript><a href='#'><img alt='ESTUDIANTES ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Es&#47;EstudiantesUnicordoba&#47;ESTUDIANTES&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EstudiantesUnicordoba&#47;ESTUDIANTES' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Es&#47;EstudiantesUnicordoba&#47;ESTUDIANTES&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1651870610515');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1277px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<!--  Inicio estilos para el scrooll de los campos -->
+<style>
+
+    .modo_scroll {
+        /* margin: 2rem auto; */
+        /* border: 1px solid #aaa; */
+        /* height: 300px; */
+        /* width:90%; */
+        height: 300px;
+        /* max-width: 500px; */
+        /* background: #f1f2f3; */
+        overflow:auto;
+        /* box-sizing: border-box; */
+        /* padding:0 1rem; */
+    }
+
+    .modo_scroll::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+
+    .modo_scroll::-webkit-scrollbar:vertical {
+        width:10px;
+    }
+
+    .modo_scroll::-webkit-scrollbar-button:increment,.modo_scroll::-webkit-scrollbar-button {
+        display: none;
+    } 
+
+    .modo_scroll::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+
+    .modo_scroll::-webkit-scrollbar-thumb {
+        background-color: #03b120;
+        border-radius: 20px;
+        border: 2px solid #f3f2f1;
+    }
+
+    .modo_scroll::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+
+
+</style>
+<!--  Fin estilos para el scrooll de los campos -->
+<script>
+
+    var conten_detalle_campos = document.getElementById("conten_detalle_campos");
+
+    function mostrar_detalle(id_){
+        switch(id_){
+            case Id_Usuario:
+                conten_detalle_campos.innerHTML = "xxxx"
+                console.log(Id_Usuario)
+            case Fuente_Datos:
+                conten_detalle_campos.innerHTML = "yyyyy"
+            default:
+            conten_detalle_campos.innerHTML = "wilmer"
+        }
+    }
+
+</script>
+
+
+<!-- Inicio lista los nombre de los campos -->
+<div class="col-lg-2 ">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title mb-4">Campos Disponibles</h4>
+
+            <div class="modo_scroll row text-center mt-4 ">
+                <div id="list-example" class="list-group " >
+                    <a onclick="mostrar_detalle(id);" class="lista" class="list-group-item list-group-item-action" href="#list-item-1">Id_Usuario</a>
+                    <a onclick="mostrar_detalle(id);" id="Fuente_Datos" class="list-group-item list-group-item-action" href="#list-item-2">Fuente_Datos</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Año_Periodo</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Session</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Facultad</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Departamento_Programa</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Nombre_Programa</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Sede</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Categoria</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Circunscripcion</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Genero</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Estado_Civil</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Factor_RH</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Fecha_Nacimiento</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Estrato</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Pais</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Departamento</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Ciudad</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Estatura</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Sisben</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Descripcion_Sisben</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Caracter</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Enfasis</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">No SNP</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Puntaje</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Ubicacion_Semestral</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Promedio_Acumulado</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Promedio_Semestre </a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Periodo_Admision</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Periodos_Cursados</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Modalidad</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Acceso_Internet</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Portatil_PC</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Celular_Tablet</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Grupo_Etnico</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Persona_Con_Discapacidad</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Capacidad_Excepcional</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Poblacion_Vulnerable</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Orientacion_Sexual</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Desvinculacion_Grupos_Armados</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Inmigrantes</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Tipo_Discapacidad</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Estado_de_Embarazo</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Tiene_Hijos</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Soltera_Cabeza_Familia</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Consume_Sustancias_Psicoactivas</a>
+
+                </div>
+                  
+            </div>
+
+        </div>
+    </div>
 </div>
+<!-- Fin lista los nombre de los campos -->
+
+
+
+<!-- Inicio grafico de tableau de estudiantes de pregrado -->
+<div class="col-lg-8" >
+    <div class="row card rounded Responsive" style='position: relative;top: -60px;text-align:center;'>
+        <div class='tableauPlaceholder' id='viz1651870610515' style='position: relative; margin:0px auto; overflow-x: auto'><noscript><a href='#'><img alt='ESTUDIANTES ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Es&#47;EstudiantesUnicordoba&#47;ESTUDIANTES&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EstudiantesUnicordoba&#47;ESTUDIANTES' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Es&#47;EstudiantesUnicordoba&#47;ESTUDIANTES&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1651870610515');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1277px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    </div>
+</div>
+<!-- Fin grafico de tableau de estudiantes de pregrado -->
+
+
+
+<!-- Inicio descripcion nombre de los campos -->
+<div class="col-lg-2">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Detalle de Campos</h4>
+
+            <div class="row text-center mt-4" id="conten_detalle_campos">
+
+                <div id="content_campo" class="list-group overflow-auto" style="height: 300px;">
+                    
+                </div>
+                  
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin descripcion nombre de los campos -->
