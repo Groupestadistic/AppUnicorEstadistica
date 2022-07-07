@@ -2,7 +2,6 @@
 
 <!--  Inicio estilos para el scrooll de los campos -->
 <style>
-
     .modo_scroll {
         /* margin: 2rem auto; */
         /* border: 1px solid #aaa; */
@@ -11,7 +10,7 @@
         height: 300px;
         /* max-width: 500px; */
         /* background: #f1f2f3; */
-        overflow:auto;
+        overflow: auto;
         /* box-sizing: border-box; */
         /* padding:0 1rem; */
     }
@@ -21,12 +20,13 @@
     }
 
     .modo_scroll::-webkit-scrollbar:vertical {
-        width:10px;
+        width: 10px;
     }
 
-    .modo_scroll::-webkit-scrollbar-button:increment,.modo_scroll::-webkit-scrollbar-button {
+    .modo_scroll::-webkit-scrollbar-button:increment,
+    .modo_scroll::-webkit-scrollbar-button {
         display: none;
-    } 
+    }
 
     .modo_scroll::-webkit-scrollbar:horizontal {
         height: 10px;
@@ -39,28 +39,157 @@
     }
 
     .modo_scroll::-webkit-scrollbar-track {
-        border-radius: 10px;  
+        border-radius: 10px;
     }
-
-
 </style>
 <!--  Fin estilos para el scrooll de los campos -->
+
 <script>
-
+    // Inicio descripcion de detalle de cada campo
     var conten_detalle_campos = document.getElementById("conten_detalle_campos");
-
-    function mostrar_detalle(id_){
-        switch(id_){
-            case Id_Usuario:
-                conten_detalle_campos.innerHTML = "xxxx"
-                console.log(Id_Usuario)
-            case Fuente_Datos:
-                conten_detalle_campos.innerHTML = "yyyyy"
-            default:
-            conten_detalle_campos.innerHTML = "wilmer"
+    function mostrar_detalle(id) {
+        switch (id) {
+            case "Id_Usuario":
+                conten_detalle_campos.innerHTML = "Es la identificación iterna que la universidad le asigna a cada estudiante. <br><br> [Nota: No disponible al público]";
+                break;
+            case "Fuente_Datos":
+                conten_detalle_campos.innerHTML = "Son los estados por los cuales el estudiante transita durante el proceso de Ingesos a la Institución";
+                break;
+            case "Ano_Periodo":
+                conten_detalle_campos.innerHTML = "Los periodos Acádemicos estan dados por semestre, este campo muestra el año con sus respectivos semestres";
+                break;
+            case "Session":
+                conten_detalle_campos.innerHTML = "La session indica el nivel academico cursado del estudiante, en este caso mostraria solo pregrado (PREG)";
+                break;
+            case "Facultad":
+                conten_detalle_campos.innerHTML = "Indica las Facultades Existentes en la Universidad";
+                break;
+            case "Departamento_Programa":
+                conten_detalle_campos.innerHTML = "Indica las Departamento Existentes en la Universidad y se ubica jerarquicamente debajo de la Facultad";
+                break;
+            case "Nombre_Programa":
+                conten_detalle_campos.innerHTML = "Indica el nombre de cada programa de la Universidad";
+                break;
+            case "Sede":
+                conten_detalle_campos.innerHTML = "La Sede representa el Lugar de Desarrollo con los que cuenta la Universidad";
+                break;
+            case "Categoria":
+                conten_detalle_campos.innerHTML = "Clasificación que se le asigna al estudiante durante el proceso de ingreso de cada periodo acádemico";
+                break;
+            case "Circunscripcion":
+                conten_detalle_campos.innerHTML = "Es la clasificación que se le asigna al estudiante en función a la via o grupo por medio del cual se preenta para ingreso a la Institución ";
+                break;
+            case "Genero":
+                conten_detalle_campos.innerHTML = "Indica Genero de nacimiento del estudiante";
+                break;
+            case "Estado_Civil":
+                conten_detalle_campos.innerHTML = "Indica el Estado civil del estudiante";
+                break;
+            case "Factor_RH":
+                conten_detalle_campos.innerHTML = "Indica Tipo de Sangre del estudiante";
+                break;
+            case "Fecha_Nacimiento":
+                conten_detalle_campos.innerHTML = "Muestra la fecha de nacimeinto del estudiante";
+                break;
+            case "Estrato":
+                conten_detalle_campos.innerHTML = "Indica el Estrato socioeconomico del estudiante";
+                break;
+            case "Pais":
+                conten_detalle_campos.innerHTML = "Pais de nacimiento del estudiante";
+                break;
+            case "Departamento":
+                conten_detalle_campos.innerHTML = "Departamento de nacimiento del estudiante";
+                break;
+            case "Ciudad":
+                conten_detalle_campos.innerHTML = "Ciudad de nacimiento del estudiante";
+                break;
+            case "Estatura":
+                conten_detalle_campos.innerHTML = "Estatura en centimetros del estudiante";
+                break;
+            case "Sisben":
+                conten_detalle_campos.innerHTML = "Puntaje que registra el estudiante dentro del Sisben";
+                break;
+            case "Descripcion_Sisben":
+                conten_detalle_campos.innerHTML = "Categoria que asigna el sisben en funcion a las carateristicas del estudiante";
+                break;
+            case "Caracter":
+                conten_detalle_campos.innerHTML = "Indica el tipo de Institucion Básica-Secundaria de la cual egresa el aspirante/estudiante";
+                break;
+            case "Enfasis":
+                conten_detalle_campos.innerHTML = "Enfasis con el cual se gradua el aspirante/estudiante de la instutucion Básica-Secundaria";
+                break;
+            case "No SNP":
+                conten_detalle_campos.innerHTML = "Codigo AC que asigna el ICFES al momento de presentar las pruebas saber 11";
+                break;
+            case "Puntaje":
+                conten_detalle_campos.innerHTML = "Puntaje resultante de las pruebas saber 11";
+                break;
+            case "Ubicacion_Semestral":
+                conten_detalle_campos.innerHTML = "Ubicación semestral del estudiante, aplica a estudiantes con categoria distinta a nuevo regular y admitido";
+                break;
+            case "Promedio_Acumulado":
+                conten_detalle_campos.innerHTML = "Es el promedio acumulado del estudiante";
+                break;
+            case "Promedio_Semestre":
+                conten_detalle_campos.innerHTML = "Es el promedio del semestre del estudiante";
+                break;
+            case "Periodo_Admision":
+                conten_detalle_campos.innerHTML = "Año-Periodo en el cual fue admitido el estudiante";
+                break;
+            case "Periodos_Cursados":
+                conten_detalle_campos.innerHTML = "Periodos cursados por el estudiante";
+                break;
+            case "Modalidad":
+                conten_detalle_campos.innerHTML = "Representa la modalidad del programa en la cual el estudiante esta adscrito";
+                break;
+            case "Acceso_Internet":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el estudiante tiene acceso a internet desde su residencia";
+                break;
+            case "Portatil_PC":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el estudiante tiene PC Portatil desde su residencia";
+                break;
+            case "Celular_Tablet":
+                conten_detalle_campos.innerHTML = " Campo binario, indica si el estudiante cuenta con celular o tablet desde su residencia";
+                break;
+            case "Grupo_Etnico":
+                conten_detalle_campos.innerHTML = "Grupo etnico al cual pertenece el aspirante/estudiante";
+                break;
+            case "Persona_Con_Discapacidad":
+                conten_detalle_campos.innerHTML = "Campo binario que indica si el aspirante/estudiante posee una discapacidad";
+                break;
+            case "Capacidad_Excepcional":
+                conten_detalle_campos.innerHTML = "Capacidad Excepcional que posee el aspirante/estudiante";
+                break;
+            case "Poblacion_Vulnerable":
+                conten_detalle_campos.innerHTML = "Indica la población vulnerable a la cual pertenece el aspirante/estudiante";
+                break;
+            case "Orientacion_Sexual":
+                conten_detalle_campos.innerHTML = "Indica la orientación sexual de cada estudiante/aspirante";
+                break;
+            case "Desvinculacion_Grupos_Armados":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el estudiante/aspirante es desvinculado del grupos armados";
+                break;
+            case "Inmigrantes":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el es aspirante/estudinate es inmigrante";
+                break;
+            case "Tipo_Discapacidad":
+                conten_detalle_campos.innerHTML = "Indica el tipo de discapacidad con la que cuenta el estduiante/aspirante";
+                break;
+            case "Estado_de_Embarazo":
+                conten_detalle_campos.innerHTML = "Indica si el aspirante/estudinate se encuentra en embarazo, solo aplica para genero Femenino";
+                break;
+            case "Tiene_Hijos":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el estudiante/aspirante tiene hijos";
+                break;
+            case "Soltera_Cabeza_Familia":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el estudiante/aspirante es Soltera Cabeza Familia, aplica para genero femenino";
+                break;
+            case "Consume_Sustancias_Psicoactivas":
+                conten_detalle_campos.innerHTML = "Campo binario, indica si el es aspirante/estudinate consume Sustancias Psicoactivas";
+                break;
         }
     }
-
+    // Inicio descripcion de detalle de cada campo
 </script>
 
 
@@ -72,56 +201,56 @@
             <h4 class="card-title mb-4">Campos Disponibles</h4>
 
             <div class="modo_scroll row text-center mt-4 ">
-                <div id="list-example" class="list-group " >
-                    <a onclick="mostrar_detalle(id);" class="lista" class="list-group-item list-group-item-action" href="#list-item-1">Id_Usuario</a>
-                    <a onclick="mostrar_detalle(id);" id="Fuente_Datos" class="list-group-item list-group-item-action" href="#list-item-2">Fuente_Datos</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Año_Periodo</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Session</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Facultad</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Departamento_Programa</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Nombre_Programa</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Sede</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Categoria</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Circunscripcion</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Genero</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Estado_Civil</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Factor_RH</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Fecha_Nacimiento</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Estrato</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Pais</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Departamento</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Ciudad</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Estatura</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Sisben</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Descripcion_Sisben</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Caracter</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Enfasis</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">No SNP</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Puntaje</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Ubicacion_Semestral</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Promedio_Acumulado</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Promedio_Semestre </a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Periodo_Admision</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Periodos_Cursados</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Modalidad</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Acceso_Internet</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Portatil_PC</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Celular_Tablet</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Grupo_Etnico</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Persona_Con_Discapacidad</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Capacidad_Excepcional</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Poblacion_Vulnerable</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Orientacion_Sexual</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Desvinculacion_Grupos_Armados</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Inmigrantes</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Tipo_Discapacidad</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Estado_de_Embarazo</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Tiene_Hijos</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Soltera_Cabeza_Familia</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">Consume_Sustancias_Psicoactivas</a>
+                <div id="list-example" class="list-group">
+                    <a onclick="mostrar_detalle(id)" id="Id_Usuario" class="list-group-item list-group-item-action" href="#">Id_Usuario</a>
+                    <a onclick="mostrar_detalle(id)" id="Fuente_Datos" class="list-group-item list-group-item-action" href="#">Fuente_Datos</a>
+                    <a onclick="mostrar_detalle(id)" id="Ano_Periodo" class="list-group-item list-group-item-action" href="#">Año_Periodo</a>
+                    <a onclick="mostrar_detalle(id)" id="Session" class="list-group-item list-group-item-action" href="#">Session</a>
+                    <a onclick="mostrar_detalle(id)" id="Facultad" class="list-group-item list-group-item-action" href="#">Facultad</a>
+                    <a onclick="mostrar_detalle(id)" id="Departamento_Programa"class="list-group-item list-group-item-action"  href="#">Departamento_Programa</a>
+                    <a onclick="mostrar_detalle(id)" id="Nombre_Programa" class="list-group-item list-group-item-action" href="#">Nombre_Programa</a>
+                    <a onclick="mostrar_detalle(id)" id="Sede" class="list-group-item list-group-item-action" href="#">Sede</a>
+                    <a onclick="mostrar_detalle(id)" id="Categoria" class="list-group-item list-group-item-action" href="#">Categoria</a>
+                    <a onclick="mostrar_detalle(id)" id="Circunscripcion" class="list-group-item list-group-item-action" href="#">Circunscripcion</a>
+                    <a onclick="mostrar_detalle(id)" id="Genero" class="list-group-item list-group-item-action" href="#">Genero</a>
+                    <a onclick="mostrar_detalle(id)" id="Estado_Civil" class="list-group-item list-group-item-action" href="#">Estado_Civil</a>
+                    <a onclick="mostrar_detalle(id)" id="Factor_RH" class="list-group-item list-group-item-action" href="#">Factor_RH</a>
+                    <a onclick="mostrar_detalle(id)" id="Fecha_Nacimiento" class="list-group-item list-group-item-action" href="#">Fecha_Nacimiento</a>
+                    <a onclick="mostrar_detalle(id)" id="Estrato" class="list-group-item list-group-item-action" href="#">Estrato</a>
+                    <a onclick="mostrar_detalle(id)" id="Pais" class="list-group-item list-group-item-action" href="#">Pais</a>
+                    <a onclick="mostrar_detalle(id)" id="Departamento" class="list-group-item list-group-item-action" href="#">Departamento</a>
+                    <a onclick="mostrar_detalle(id)" id="Ciudad" class="list-group-item list-group-item-action" href="#">Ciudad</a>
+                    <a onclick="mostrar_detalle(id)" id="Estatura" class="list-group-item list-group-item-action" href="#">Estatura</a>
+                    <a onclick="mostrar_detalle(id)" id="Sisben" class="list-group-item list-group-item-action" href="#">Sisben</a>
+                    <a onclick="mostrar_detalle(id)" id="Descripcion_Sisben" class="list-group-item list-group-item-action"  href="#">Descripcion_Sisben</a>
+                    <a onclick="mostrar_detalle(id)" id="Caracter" class="list-group-item list-group-item-action" href="#">Caracter</a>
+                    <a onclick="mostrar_detalle(id)" id="Enfasis" class="list-group-item list-group-item-action" href="#">Enfasis</a>
+                    <a onclick="mostrar_detalle(id)" id="No SNP" class="list-group-item list-group-item-action" href="#">No SNP</a>
+                    <a onclick="mostrar_detalle(id)" id="Puntaje" class="list-group-item list-group-item-action" href="#">Puntaje</a>
+                    <a onclick="mostrar_detalle(id)" id="Ubicacion_Semestral" class="list-group-item list-group-item-action" href="#">Ubicacion_Semestral</a>
+                    <a onclick="mostrar_detalle(id)" id="Promedio_Acumulado" class="list-group-item list-group-item-action" href="#">Promedio_Acumulado</a>
+                    <a onclick="mostrar_detalle(id)" id="Promedio_Semestre" class="list-group-item list-group-item-action" href="#">Promedio_Semestre </a>
+                    <a onclick="mostrar_detalle(id)" id="Periodo_Admision" class="list-group-item list-group-item-action" href="#">Periodo_Admision</a>
+                    <a onclick="mostrar_detalle(id)" id="Periodos_Cursados" class="list-group-item list-group-item-action" href="#">Periodos_Cursados</a>
+                    <a onclick="mostrar_detalle(id)" id="Modalidad" class="list-group-item list-group-item-action" href="#">Modalidad</a>
+                    <a onclick="mostrar_detalle(id)" id="Acceso_Internet" class="list-group-item list-group-item-action" href="#">Acceso_Internet</a>
+                    <a onclick="mostrar_detalle(id)" id="Portatil_PC" class="list-group-item list-group-item-action" href="#">Portatil_PC</a>
+                    <a onclick="mostrar_detalle(id)" id="Celular_Tablet" class="list-group-item list-group-item-action" href="#">Celular_Tablet</a>
+                    <a onclick="mostrar_detalle(id)" id="Grupo_Etnico" class="list-group-item list-group-item-action" href="#">Grupo_Etnico</a>
+                    <a onclick="mostrar_detalle(id)" id="Persona_Con_Discapacidad" class="list-group-item list-group-item-action" href="#">Persona_Con_Discapacidad</a>
+                    <a onclick="mostrar_detalle(id)" id="Capacidad_Excepcional" class="list-group-item list-group-item-action" href="#">Capacidad_Excepcional</a>
+                    <a onclick="mostrar_detalle(id)" id="Poblacion_Vulnerable" class="list-group-item list-group-item-action" href="#">Poblacion_Vulnerable</a>
+                    <a onclick="mostrar_detalle(id)" id="Orientacion_Sexual" class="list-group-item list-group-item-action" href="#">Orientacion_Sexual</a>
+                    <a onclick="mostrar_detalle(id)" id="Desvinculacion_Grupos_Armados" class="list-group-item list-group-item-action" href="#">Desvinculacion_Grupos_Armados</a>
+                    <a onclick="mostrar_detalle(id)" id="Inmigrantes" class="list-group-item list-group-item-action" href="#">Inmigrantes</a>
+                    <a onclick="mostrar_detalle(id)" id="Tipo_Discapacidad" class="list-group-item list-group-item-action" href="#">Tipo_Discapacidad</a>
+                    <a onclick="mostrar_detalle(id)" id="Estado_de_Embarazo" class="list-group-item list-group-item-action" href="#">Estado_de_Embarazo</a>
+                    <a onclick="mostrar_detalle(id)" id="Tiene_Hijos" class="list-group-item list-group-item-action" href="#">Tiene_Hijos</a>
+                    <a onclick="mostrar_detalle(id)" id="Soltera_Cabeza_Familia" class="list-group-item list-group-item-action" href="#">Soltera_Cabeza_Familia</a>
+                    <a onclick="mostrar_detalle(id)" id="Consume_Sustancias_Psicoactivas" class="list-group-item list-group-item-action" href="#">Consume_Sustancias_Psicoactivas</a>
 
                 </div>
-                  
+
             </div>
 
         </div>
@@ -134,9 +263,13 @@
 <!-- Inicio grafico de tableau de estudiantes de pregrado -->
 <div class="col-lg-8" >
     <div class="row card rounded Responsive" style='position: relative;top: -60px;text-align:center;'>
-        <div class='tableauPlaceholder' id='viz1651870610515' style='position: relative; margin:0px auto; overflow-x: auto'><noscript><a href='#'><img alt='ESTUDIANTES ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Es&#47;EstudiantesUnicordoba&#47;ESTUDIANTES&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EstudiantesUnicordoba&#47;ESTUDIANTES' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Es&#47;EstudiantesUnicordoba&#47;ESTUDIANTES&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1651870610515');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1277px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+        <div style="overflow-y: hidden; position: relative; margin: 0 auto;">
+            <iframe src="https://public.tableau.com/views/EstudiantesUnicordoba/ESTUDIANTES_PREGRADO?:language=es-ES&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true" width=1050px height="850px"></iframe>
+        </div>
+    
     </div>
 </div>
+
 <!-- Fin grafico de tableau de estudiantes de pregrado -->
 
 
@@ -147,12 +280,13 @@
         <div class="card-body">
             <h4 class="card-title mb-4">Detalle de Campos</h4>
 
-            <div class="row text-center mt-4" id="conten_detalle_campos">
+            <div class="row text-center mt-4">
 
-                <div id="content_campo" class="list-group overflow-auto" style="height: 300px;">
-                    
+                <div id="conten_detalle_campos" class="list-group overflow-auto m-1"
+                    style="height: 300px;text-align: justify">
+
                 </div>
-                  
+
             </div>
         </div>
     </div>

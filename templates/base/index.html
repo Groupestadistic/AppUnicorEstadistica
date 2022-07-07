@@ -5,19 +5,19 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Planeacion y Desarrollo</title>
+        <title>Estadísticas Unicor</title>
 
         <meta content="Graphics to display information from the University of Cordoba" name="description" />
         <meta content="statistics group - University of Cordoba" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'dist/assets/images/favicon.ico' %}">
+        <link rel="shortcut icon" href="{% static 'dist/assets/images/propias/Imagen1.png' %}">
         
         <!-- Bootstrap Css -->
         <link href="{% static 'dist/assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="{% static 'dist/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{% static 'dist/assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/assets/css/app.min.css' %}"  rel="stylesheet" type="text/css" />
 
         
 
@@ -281,33 +281,37 @@
                                         
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-email" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a style="text-align: center;" class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-email" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
-                                                    <center>
+                                                    <!-- <center> -->
                                                         <img height= 30px src="{% static 'dist/assets/images/propias/estudiante2.png' %}" >
-                                                    </center>
+                                                    <!-- </center> -->
                                                 </div>
                                                 Estudiantes
+
+                                                
                                             </a>
+                                            
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-email">
                                                 <a href="#" class="dropdown-item estudiantes_preg">Pregrado</a>
                                                 <a href="#" class="dropdown-item graduado">Graduados</a>
-                                                <!-- <a href="#" class="dropdown-item">Postgrado</a> -->
+                                                <a href="#" class="dropdown-item estudiantes_post">Postgrado</a>
 
                                             </div>
                                         </li>
 
 
+
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-forms" role="button"
+                                            <a style="text-align: center;" class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-forms" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
-                                                    <center>
+                                                    <!-- <center> -->
                                                         <img height= 30px src="{% static 'dist/assets/images/propias/docente2.png' %}" >
-                                                    </center>
+                                                    <!-- </center> -->
                                                 </div>
-                                                Docentes 
+                                                Docentes
+                                                 
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-forms">
                                                     <a href="#" class="dropdown-item docentes">Variables Poblacionales</a>
@@ -318,14 +322,14 @@
                                         
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center; opacity: 0.4;" class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
-                                                    <center>
+                                                    <!-- <center> -->
                                                         <img height= 30px src="{% static 'dist/assets/images/propias/investigacion2.png' %}" >
-                                                    </center>
+                                                    <!-- </center> -->
                                                 </div>
-                                               <span class=""><center><small>Investigación  <br> Extención</center> </small> </span>
+                                               Investigación  <br> Extención
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
                                             <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a> -->
@@ -335,14 +339,14 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center; opacity: 0.4;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
-                                                    <center>
+                                                    <!-- <center> -->
                                                         <img height= 30px src="{% static 'dist/assets/images/propias/bienestar.png' %}" >
-                                                    </center>
+                                                    <!-- </center> -->
                                                 </div>
-                                                <span class=""><center><small>Bienestar <br> Institucional</center> </small> </span>
+                                                Bienestar <br> Institucional
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
                                             <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a> -->
@@ -351,14 +355,14 @@
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center; opacity: 0.4;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
-                                                    <center>
+                                                    <!-- <center> -->
                                                         <img height= 30px src="{% static 'dist/assets/images/propias/presupuesto.png' %}" >
-                                                    </center>
+                                                    <!-- </center> -->
                                                 </div>
-                                                <span class=""><center><small>Recursos <br> Financieros</center> </small> </span>
+                                                Recursos <br> Financieros
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
                                             <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a>-->
@@ -367,14 +371,14 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center; opacity: 0.4;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
-                                                    <center>
+                                                    <!-- <center> -->
                                                         <img height= 30px src="{% static 'dist/assets/images/propias/infraestructura.png' %}" >
-                                                    </center>
+                                                    <!-- </center> -->
                                                 </div>
-                                                <span class=""><center><small>Infraestructura  <br> Física</center> </small> </span>
+                                                Infraestructura  <br> Física
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
                                             <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a> -->
@@ -715,82 +719,129 @@
         <!--Morris Chart-->
         <script src="{% static 'dist/assets/libs/morris.js/morris.min.js' %}"></script>
         <script src="{% static 'dist/assets/libs/raphael/raphael.min.js' %}"></script>
-
-        <!-- <script src="{% static 'dist/assets/js/pages/dashboard.init.js' %}"></script> -->
+        <script src="{% static 'dist/assets/js/pages/dashboard.init.js' %}"></script>
 
         <!-- App js -->
-        <!-- <script src="{% static 'dist/assets/js/app.js' %}"></script> -->
+        <script src="{% static 'dist/assets/js/app.js' %}"></script>
+        <link href="{% static 'dist/assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+
 
 
         <!-- menu con streamin -->
-	<script>
+        <script>
 
 
-		// estos son los ajax para llamar cada elemento del menu
-		$('.estudiantes_preg').on('click', function(){
-			
-			$.ajax({
-				url:'{% url "estudiantes_preg" %}',
-				// beforeSend: function(){
-				// 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
-				// },
-				type:'POST',
-				data: {},
-				dataType: 'html'
-			}).done(function(data){
-				// console.log(data)
-				// setTimeout(function(){
-				$("#contenedor_global").html(data);
-                $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
-				// },.2000);
+            // estos son los ajax para llamar cada elemento del menu
+            $('.prueba').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "prueba" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > prueba</span>');
+                    // },.2000);
 
-			});
-			
-		});
+                });
+                
+            });
 
-        $('.docentes').on('click', function(){
-			
-			$.ajax({
-				url:'{% url "docentes" %}',
-				// beforeSend: function(){
-				// 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
-				// },
-				type:'POST',
-				data: {},
-				dataType: 'html'
-			}).done(function(data){
-				// console.log(data)
-				// setTimeout(function(){
-				$("#contenedor_global").html(data);
-                $("#titulo_actual").html('<span class="text-success">Docentes > Variables Poblacionales</span> ');
-				// },.2000);
 
-			});
-			
-		});
 
-        $('.graduado').on('click', function(){
-			
-			$.ajax({
-				url:'{% url "graduado" %}',
-				// beforeSend: function(){
-				// 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
-				// },
-				type:'POST',
-				data: {},
-				dataType: 'html'
-			}).done(function(data){
-				// console.log(data)
-				// setTimeout(function(){
-				$("#contenedor_global").html(data);
-                $("#titulo_actual").html('<span class="text-success">Estudiantes > Graduados</span> ');
-				// },.2000);
+            $('.estudiantes_preg').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "estudiantes_preg" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
+                    // },.2000);
 
-			});
-			
-		});
+                });
+                
+            });
 
-	</script>
+
+            $('.estudiantes_post').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "estudiantes_post" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > Postgrado</span>');
+                    // },.2000);
+
+                });
+                
+            });
+
+
+            $('.docentes').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "docentes" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Docentes > Variables Poblacionales</span> ');
+                    // },.2000);
+
+                });
+                
+            });
+
+            $('.graduado').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "graduado" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > Graduados</span> ');
+                    // },.2000);
+
+                });
+                
+            });
+
+        </script>
 
     </body>
 
