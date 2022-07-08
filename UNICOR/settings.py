@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 # import pandas
+# }import pandas
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-zigs@#die9u8toj6#_p=9em@5q3rt4d25f-i$+#z)$3(#0_7is
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '172.17.11.244']
+ALLOWED_HOSTS = ['localhost', '172.17.11.244', '172.17.14.125']
 
 
 # Application definition
