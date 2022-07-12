@@ -26,3 +26,8 @@ def docentes(request):
 @method_decorator(csrf_exempt)
 def graduado(request):
     return render(request,'ajax/estudiantes/graduado.html', {})
+
+
+@method_decorator(csrf_exempt)
+def investigacion(request):
+    return render(request,'ajax/investigacion_extencion/investigacion.html', {})

@@ -235,15 +235,22 @@
                 </div>
 
                 <div class="top-navigation border-top border-success" style="height: 8rem;">
+                    
                     <div class="page-title-content">
+                        
                         <div class="container-fluid">
+                            
                             <!-- start page title -->
                             <div class="row">
+                                
                                 <div class="col-sm-6">
-
+                                    
                                     <div class="page-title-box">
+                                        
                                         <a href="{% url 'index' %}">
+                                            <!-- <img src="{% static 'dist/assets/images/propias/logo_unicor.png' %}" alt="" height="60"> -->
                                             <h4 class="text-success">
+                                                
                                                 <i class="mdi mdi-spin mdi-cog"></i>
                                                 ESTADÍSTICAS UNICORDOBA
                                             </h4>
@@ -314,7 +321,7 @@
                                                  
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-forms">
-                                                    <a href="#" class="dropdown-item docentes">Variables Poblacionales</a>
+                                                    <a href="#" class="dropdown-item docentes">Docentes</a>
                                                     <!-- <a href="#" class="dropdown-item">Variables academicas</a> -->
                                             </div>
                                         </li>
@@ -322,7 +329,7 @@
                                         
 
                                         <li class="nav-item dropdown">
-                                            <a style="text-align: center; opacity: 0.4;" class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center;" class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
                                                     <!-- <center> -->
@@ -332,7 +339,7 @@
                                                Investigación  <br> Extensión
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
-                                            <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a> -->
+                                            <a href="#" class="dropdown-item investigacion">Investigación</a>
                                            
                                             </div>
                                         </li>
@@ -605,7 +612,10 @@
                         <div class="col-lg-8" >
                             <div class="card row col-auto rounded justify-content-center" style="border-top: 50px;">
                                 <center>
-                                    <img height= "500rem" src="{% static 'dist/assets/images/propias/unicor_acreditada.png' %}" >
+                                    <a href="https://www.unicordoba.edu.co/">
+                                        <img height= "500rem" src="{% static 'dist/assets/images/propias/unicor_acreditada.png' %}">
+                                    </a>
+                                    
                                 </center>
                             </div>
                         </div>
@@ -835,6 +845,27 @@
                     // setTimeout(function(){
                     $("#contenedor_global").html(data);
                     $("#titulo_actual").html('<span class="text-success">Estudiantes > Graduados</span> ');
+                    // },.2000);
+
+                });
+                
+            });
+
+            $('.investigacion').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "investigacion" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Investigación Extención > Investigación</span> ');
                     // },.2000);
 
                 });
