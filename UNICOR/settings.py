@@ -29,7 +29,7 @@ DEBUG = False
 
 #<<<<<<< HEAD
 ALLOWED_HOSTS = ['localhost', 'estadisticas.appsprod.unicordoba.edu.co']
-=======
+#=======
 #ALLOWED_HOSTS = ['localhost', '172.17.11.244', '172.17.14.125']
 #>>>>>>> origin
 
