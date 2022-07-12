@@ -27,11 +27,11 @@ SECRET_KEY = '8f05aa6e28fb2d34f2dab621d230200bde0e8eb61ea8a43f14bf90ad4f96c25d3e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 ALLOWED_HOSTS = ['localhost', 'estadisticas.appsprod.unicordoba.edu.co']
 =======
-ALLOWED_HOSTS = ['localhost', '172.17.11.244', '172.17.14.125']
->>>>>>> origin
+#ALLOWED_HOSTS = ['localhost', '172.17.11.244', '172.17.14.125']
+#>>>>>>> origin
 
 
 # Application definition
