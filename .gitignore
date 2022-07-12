@@ -4,4 +4,9 @@ wsgi.py
 asgi.py
 __pycache__
 UNICOR/settings.py
+<<<<<<< HEAD
 UNICOR/wsgi.py.py
+=======
+env/
+staticfiles/
+>>>>>>> b55c588dc5832bc535483edc52132c93f942a33c
