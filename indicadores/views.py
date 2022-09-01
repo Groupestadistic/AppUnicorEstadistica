@@ -32,3 +32,11 @@ def graduado(request):
 @method_decorator(csrf_exempt)
 def investigacion(request):
     return render(request,'ajax/investigacion_extencion/investigacion.html', {})
+
+@method_decorator(csrf_exempt)
+def bienestar(request):
+    return render(request,'ajax/bienestar/bienestar.html', {})
+
+@method_decorator(csrf_exempt)
+def recurso_financiero(request):
+    return render(request,'ajax/recursos_financieros/recursos_financieros.html', {})

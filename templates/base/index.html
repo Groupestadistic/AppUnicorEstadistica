@@ -346,7 +346,7 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a style="text-align: center; opacity: 0.4;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
                                                     <!-- <center> -->
@@ -356,13 +356,13 @@
                                                 Bienestar <br> Institucional
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
-                                            <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a> -->
+                                            <a href="#" class="dropdown-item bienestar">Bienestar</a>
 
                                             </div>
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a style="text-align: center; opacity: 0.4;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
                                                     <!-- <center> -->
@@ -372,7 +372,7 @@
                                                 Recursos <br> Financieros
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
-                                            <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a>-->
+                                            <a href="#" class="dropdown-item recurso_financiero">Recursos Financieros</a>
                                             </div>
                                         </li>
 
@@ -866,6 +866,50 @@
                     // setTimeout(function(){
                     $("#contenedor_global").html(data);
                     $("#titulo_actual").html('<span class="text-success">Investigación Extención > Investigación</span> ');
+                    // },.2000);
+
+                });
+                
+            });
+
+
+            $('.bienestar').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "bienestar" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Bienestar Institucional > Bienestar</span> ');
+                    // },.2000);
+
+                });
+                
+            });
+
+
+            $('.recurso_financiero').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "recurso_financiero" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Recursos Financieros > Recursos Financieros</span> ');
                     // },.2000);
 
                 });
