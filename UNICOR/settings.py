@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8f05aa6e28fb2d34f2dab621d230200bde0e8eb61ea8a43f14bf90ad4f96c25d3e122afb0e1d633d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #<<<<<<< HEAD
-ALLOWED_HOSTS = ['localhost', 'estadisticas.appsprod.unicordoba.edu.co', '172.17.14.125']
+ALLOWED_HOSTS = ['localhost', 'estadisticas.appsprod.unicordoba.edu.co', '172.17.14.125','172.17.21.25']
 #=======
 #ALLOWED_HOSTS = ['localhost', '172.17.11.244', '172.17.14.125']
 #>>>>>>> origin

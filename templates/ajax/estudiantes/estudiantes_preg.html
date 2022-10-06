@@ -263,7 +263,7 @@
 
 <!-- Inicio grafico de tableau de estudiantes de pregrado -->
 <div class="col-lg-8" >
-    <div class="row card rounded Responsive wilmer" style='position: relative;top: -60px;text-align:center;'>
+    <div class="row card rounded Responsive wilmer" id="caja_central" style='position: relative;top: -60px;text-align:center;'>
         <div style="overflow-y: hidden; position: relative; margin: 0 auto;">
             <!-- <iframe src="https://public.tableau.com/views/EstudiantesUnicordoba/ESTUDIANTES_PREGRADO?:language=es-ES&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true" width=1050px height="850px"></iframe> -->
         
@@ -273,14 +273,17 @@
             <script type='text/javascript'>                    
                 var vizElementD = document.getElementById('vizContainerDesktop NV');
                 var vizElementM = document.getElementById('vizContainerMobile NV');
+                var caja_central = document.getElementById('caja_central');
+                
                 console.log($(window).width());
 
                 if ( $(window).width() > 1000 ) 
                     {vizElementD.style.display='block';
                     vizElementM.style.display='none';} 
                 else { 
-                    {vizElementD.style.display='none';
-                    vizElementM.style.display='block';} 
+                    vizElementD.style.display='none';
+                    vizElementM.style.display='block';
+                    caja_central.style.top = 0;
                 }                     
             </script>
         

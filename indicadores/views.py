@@ -39,4 +39,8 @@ def bienestar(request):
 
 @method_decorator(csrf_exempt)
 def recurso_financiero(request):
-    return render(request,'ajax/recursos_financieros/recursos_financieros.html', {})
+    return render(request,'ajax/recursos_financieros/recursos_financieros.html', {})  
+
+@method_decorator(csrf_exempt)
+def tasa_graduacion(request):
+    return render(request,'ajax/estudiantes/tasa_graduacion.html', {})

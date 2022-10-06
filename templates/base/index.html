@@ -19,7 +19,6 @@
         <!-- App Css-->
         <link href="{% static 'dist/assets/css/app.min.css' %}"  rel="stylesheet" type="text/css" />
 
-        
 
     </head>
 
@@ -303,7 +302,7 @@
                                                 <a href="#" class="dropdown-item estudiantes_preg">Pregrado</a>
                                                 <a href="#" class="dropdown-item graduado">Graduados</a>
                                                 <a href="#" class="dropdown-item estudiantes_post">Postgrado</a>
-
+                                                <a href="#" class="dropdown-item tasa_graduacion">Tasa Graduación Pregrado</a>
                                             </div>
                                         </li>
 
@@ -394,6 +393,20 @@
                                         </li>
 
                                         
+                                        <li class="nav-item dropdown">
+                                            <a style="text-align: center;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div>
+                                                    <!-- <center> -->
+                                                        <img height= 30px src="{% static 'dist/assets/images/propias/pregunta.png' %}" >
+                                                    <!-- </center> -->
+                                                </div>
+                                                Guía
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
+                                                <a href="https://docs.google.com/document/d/1NdmNFEckUOOh-LAHQuwtrmS9Airc_kRi/edit" target="_blank" class="dropdown-item">Manual de Usuario</a>
+                                            </div>
+                                        </li>
 
 
                                         <!-- <li class="nav-item">
@@ -849,7 +862,37 @@
 
                 });
                 
+            });  
+
+
+            $('.tasa_graduacion').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "tasa_graduacion" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > Tasa graduación Pregrado</span> ');
+                    // },.2000);
+
+                });
+                
             });
+
+
+
+
+
+
+
+
 
             $('.investigacion').on('click', function(){
                 
