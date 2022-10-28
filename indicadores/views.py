@@ -44,3 +44,16 @@ def recurso_financiero(request):
 @method_decorator(csrf_exempt)
 def tasa_graduacion(request):
     return render(request,'ajax/estudiantes/tasa_graduacion.html', {})
+
+@method_decorator(csrf_exempt)
+def aulas(request):
+    return render(request,'ajax/infraestructura/aulas.html', {})
+
+@method_decorator(csrf_exempt)
+def valor_agregado(request):
+    return render(request,'ajax/estudiantes/valor_agregado.html', {})
+
+    
+@method_decorator(csrf_exempt)
+def tasa_deser_reten(request):
+    return render(request,'ajax/estudiantes/tasa_desercion_retencion.html', {})

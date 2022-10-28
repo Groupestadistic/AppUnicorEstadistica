@@ -28,6 +28,10 @@ urlpatterns = [
     path('bienestar/', bienestar, name='bienestar'),
     path('recurso_financiero/', recurso_financiero, name='recurso_financiero'),
     path('tasa_graduacion/', tasa_graduacion, name='tasa_graduacion'),
+    path('aulas/', aulas, name='aulas'),
+    path('valor_agregado/', valor_agregado, name='valor_agregado'),
+    path('tasa_deser_reten/', tasa_deser_reten, name='tasa_deser_reten'),
+
 
 
     path('prueba/', prueba, name='prueba'),
