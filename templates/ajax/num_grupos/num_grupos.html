@@ -1,0 +1,83 @@
+{% load static %}
+<div class="col-xl-6">
+    <div class="card">
+        <div class="card-body">
+            <!-- <h4 class="card-title">ESTIMAR NÚMERO DE GRUPOS</h4> -->
+            <!-- <form class="needs-validation" novalidate> -->
+                <div class="row">
+
+                    <div>
+                        <div class="mb-3 position-relative">
+                            <label class="form-label" for="validationTooltip01">Nombre del Programa</label>
+                            <input id="programa" type="text" class="form-control" placeholder="Escriba el nombre del programa ..." required>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 position-relative">
+                            <label class="form-label" for="validationTooltip03">Año</label>
+
+                            <select class="form-control" name="select" id="periodo">
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022" selected>2022</option>
+                            </select>
+
+                            <!-- <input type="text" class="form-control"  placeholder="Seleccionar el periodo" required> -->
+                            
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-6">
+                        <div class="mb-3 position-relative">
+                            <label class="form-label" for="validationTooltip03">Semestre</label>
+                            <select class="form-control" name="select" id="semestre">
+                                <option value="SEM1" selected>SEM1</option>
+                                <option value="SEM2">SEM2</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+                <button class="btn btn-primary buscar">Buscar</button>
+            <!-- </form> -->
+        </div>
+    </div>
+    <!-- end card -->
+</div> <!-- end col -->
+
+
+<script>
+    
+    $('.buscar').on('click', function(){
+        var peri =   document.getElementById('periodo').value;
+        var seme =   document.getElementById('semestre').value;
+        var prog =   document.getElementById('programa').value;
+        $.ajax({
+            url:'{% url "resumen" %}',
+            beforeSend: function(){
+            	$("#contenedor_espec").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+            },
+            type:'POST',
+            data: {'periodo':peri,'semestre':seme, 'programa': prog},
+            dataType: 'html'
+        }).done(function(data){
+            // console.log(data)
+            setTimeout(function(){
+                $("#contenedor_espec").html(data);
+            // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
+            },.2000);
+
+        });
+        
+    });
+
+</script>
