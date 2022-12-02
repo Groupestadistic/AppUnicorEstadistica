@@ -9,13 +9,16 @@
                     <div>
                         <div class="mb-3 position-relative">
                             <label class="form-label" for="validationTooltip01">Nombre del Programa</label>
-                            <input id="programa" type="text" class="form-control" placeholder="Escriba el nombre del programa ..." required>
-                            
+                            <!-- <input id="programa" type="text" class="form-control" placeholder="Escriba el nombre del programa ..." required> -->
+                            <select class="form-control" name="select" id="programa">
+                                <option value="Acuicultura" selected>Acuicultura</option>
+                                <!-- <option value="SEM2">SEM2</option> -->
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="mb-3 position-relative">
                             <label class="form-label" for="validationTooltip03">Año</label>
 
@@ -34,7 +37,7 @@
                         </div>
                     </div>
                     <!-- end col -->
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="mb-3 position-relative">
                             <label class="form-label" for="validationTooltip03">Semestre</label>
                             <select class="form-control" name="select" id="semestre">
@@ -45,9 +48,37 @@
                         </div>
                     </div>
                     <!-- end col -->
+
+                    <div class="col-md-3">
+                        <div class="mb-3 position-relative">
+                            <label class="form-label" for="validationTooltip03">Est. de Nuevo Ingreso</label>
+                            <input id="est_nuevo_ingreso" type="number" class="form-control" placeholder="# de Est. nuevos ..." required value="40">
+                            
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-md-3">
+                        <div class="mb-3 position-relative">
+                            <label class="form-label" for="validationTooltip03">Capacidad de Aulas</label>
+                            <input id="cap_grupo" type="number" class="form-control" placeholder="Capacidad de Aulas ..." required value="40">
+                            
+                        </div>
+                    </div>
+                    <!-- end col -->
+
                 </div>
                 <!-- end row -->
-                <button class="btn btn-primary buscar">Buscar</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary cargar_notas">Cargue de Notas</button>
+                    </div>
+                    <div  class="col-md-6" style="text-align: right;"> 
+                        <button  class="btn btn-success estimar_grupos">Estimar Num. Grupos</button>
+                    </div>
+                    
+                </div>
+                
             <!-- </form> -->
         </div>
     </div>
@@ -57,17 +88,48 @@
 
 <script>
     
-    $('.buscar').on('click', function(){
+    $('.cargar_notas').on('click', function(){
         var peri =   document.getElementById('periodo').value;
         var seme =   document.getElementById('semestre').value;
         var prog =   document.getElementById('programa').value;
         $.ajax({
-            url:'{% url "resumen" %}',
+            url:'{% url "cargue_notas" %}',
             beforeSend: function(){
             	$("#contenedor_espec").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
             },
             type:'POST',
             data: {'periodo':peri,'semestre':seme, 'programa': prog},
+            dataType: 'html'
+        }).done(function(data){
+            // console.log(data)
+            setTimeout(function(){
+                $("#contenedor_espec").html(data);
+            // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
+            },.2000);
+
+        });
+        
+    });
+
+    $('.estimar_grupos').on('click', function(){
+        var peri =   document.getElementById('periodo').value;
+        var seme =   document.getElementById('semestre').value;
+        var prog =   document.getElementById('programa').value;
+        var new_ingresos =   document.getElementById('est_nuevo_ingreso').value;
+        var cap_grupo =   document.getElementById('cap_grupo').value;
+
+        $.ajax({
+            url:'{% url "estimar_grupos" %}',
+            beforeSend: function(){
+            	$("#contenedor_espec").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+            },
+            type:'POST',
+            data: { 'periodo':peri,
+                    'semestre':seme, 
+                    'programa': prog, 
+                    'est_nuevo_ingreso':new_ingresos,
+                    'cap_grupo':cap_grupo
+                },
             dataType: 'html'
         }).done(function(data){
             // console.log(data)

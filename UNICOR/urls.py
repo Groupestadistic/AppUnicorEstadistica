@@ -14,11 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from indicadores.views import *
 
 urlpatterns = [
+    path('accounts/', include('allauth.urls')),
+
     path('admin/', admin.site.urls),
+
     path('', index, name='index'), 
     path('estudiantes_preg/', estudiantes_preg, name='estudiantes_preg'),
     path('estudiantes_post/', estudiantes_post, name='estudiantes_post'),
@@ -29,7 +33,8 @@ urlpatterns = [
     path('recurso_financiero/', recurso_financiero, name='recurso_financiero'),
     path('tasa_graduacion/', tasa_graduacion, name='tasa_graduacion'),
 
-    path('zona_privada/',zona_privada, name='zona_privada'),
-    path('zona_privada/num_grupos',num_grupos, name='num_grupos'),
-    path('zona_privada/resumen',resumen, name='resumen')
+    path('zona_privada/',login_required(zona_privada), name='zona_privada'),
+    path('zona_privada/num_grupos/',login_required(num_grupos), name='num_grupos'),
+    path('zona_privada/cargue_notas/',login_required(cargue_notas), name='cargue_notas'),
+    path('zona_privada/estimar_grupos/',login_required(estimar_grupos), name='estimar_grupos')
 ]
