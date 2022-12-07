@@ -1,4 +1,10 @@
 {% load static %}
+
+<link href="{% static 'dist/assets/libs/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dist/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+<link href="{% static 'dist/assets/libs/spectrum-colorpicker2/spectrum.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'dist/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" />
+
 <div class="col-xl-6">
     <div class="card">
         <div class="card-body">
@@ -9,10 +15,45 @@
                     <div>
                         <div class="mb-3 position-relative">
                             <label class="form-label" for="validationTooltip01">Nombre del Programa</label>
-                            <!-- <input id="programa" type="text" class="form-control" placeholder="Escriba el nombre del programa ..." required> -->
-                            <select class="form-control" name="select" id="programa">
-                                <option value="Acuicultura" selected>Acuicultura</option>
-                                <!-- <option value="SEM2">SEM2</option> -->
+                            <select class="form-control select2" name="select" id="programa">
+                                <option value="" selected >Seleccione un Programa ...</option>
+                                <option value="Acuicultura">Acuicultura</option>
+                                <option value="Adminis. en Finanzas y Negocios Internac">Adminis. en Finanzas y Negocios Internac</option>
+                                <option value="Administración en Salud">Administración en Salud</option>
+                                <option value="Bacteriología">Bacteriología</option>
+                                <option value="Biología">Biología</option>
+                                <option value="Derecho">Derecho</option>
+                                <option value="Enfermería">Enfermería</option>
+                                <option value="Especialización en Gerencia Empresarial">Especialización en Gerencia Empresarial</option>
+                                <option value="Estadística">Estadística</option>
+                                <option value="Física">Física</option>
+                                <option value="Geografía">Geografía</option>
+                                <option value="Ingeniería Agronómica">Ingeniería Agronómica</option>
+                                <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
+                                <option value="Ingeniería de Alimentos">Ingeniería de Alimentos</option>
+                                <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+                                <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                                <option value="Ingeniería Mecánica">Ingeniería Mecánica</option>
+                                <option value="Lic en Ciencias Naturales y Edu Ambienta">Lic en Ciencias Naturales y Edu Ambienta</option>
+                                <option value="LIC EN CIENCIAS NATURALES Y EDU AMBIENTA">LIC EN CIENCIAS NATURALES Y EDU AMBIENTA</option>
+                                <option value="LIC EN CIENCIAS SOCIALES">LIC EN CIENCIAS SOCIALES</option>
+                                <option value="Lic en Educ Básica con Enf en Cien Socia">Lic en Educ Básica con Enf en Cien Socia</option>
+                                <option value="Lic en Educ Básica con Enf en Human Ingl">Lic en Educ Básica con Enf en Human Ingl</option>
+                                <option value="Lic en Educ Básica con Enf Hum Leng Cast">Lic en Educ Básica con Enf Hum Leng Cast</option>
+                                <option value="LIC EN EDUCACION ARTISTICA">LIC EN EDUCACION ARTISTICA</option>
+                                <option value="LIC EN LENGUAS EXTRAN CON ENFA EN INGLES">LIC EN LENGUAS EXTRAN CON ENFA EN INGLES</option>
+                                <option value="LIC EN LITERATURA Y LENGUA CASTELLANA">LIC EN LITERATURA Y LENGUA CASTELLANA</option>
+                                <option value="Lic. Educación Básica Énfasis Artística">Lic. Educación Básica Énfasis Artística</option>
+                                <option value="Lic. Educación Física Recreación y Depor">Lic. Educación Física Recreación y Depor</option>
+                                <option value="Licenciatura En Educación Infantil">Licenciatura En Educación Infantil</option>
+                                <option value="LICENCIATURA EN INFORMATICA">LICENCIATURA EN INFORMATICA</option>
+                                <option value="Licenciatura en Informática y Medios Aud">Licenciatura en Informática y Medios Aud</option>
+                                <option value="Maestría En Biotecnología">Maestría En Biotecnología</option>
+                                <option value="Matemáticas">Matemáticas</option>
+                                <option value="Medicina Veterinaria y Zootecnia">Medicina Veterinaria y Zootecnia</option>
+                                <option value="Química">Química</option>
+                                <option value="TEC PROF EN MANEJO Y CONSERV DE PROD AGR">TEC PROF EN MANEJO Y CONSERV DE PROD AGR</option>
+                                <option value="Tecnología en Regencia De Farmacia">Tecnología en Regencia De Farmacia</option>
                             </select>
                         </div>
                     </div>
@@ -23,6 +64,7 @@
                             <label class="form-label" for="validationTooltip03">Año</label>
 
                             <select class="form-control" name="select" id="periodo">
+                                <option value="2016">2015</option>
                                 <option value="2016">2016</option>
                                 <option value="2017">2017</option>
                                 <option value="2018">2018</option>
@@ -143,3 +185,11 @@
     });
 
 </script>
+
+<script src="{% static 'dist/assets/libs/select2/js/select2.min.js' %}"></script>
+<script src="{% static 'dist/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'dist/assets/libs/spectrum-colorpicker2/spectrum.min.js' %}"></script>
+<script src="{% static 'dist/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+<script src="{% static 'dist/assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js' %}"></script>
+<script src="{% static 'dist/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
+<script src="{% static 'dist/assets/js/pages/form-advanced.init.js' %}"></script>
