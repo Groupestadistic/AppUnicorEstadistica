@@ -15,7 +15,7 @@
                     <div>
                         <div class="mb-3 position-relative">
                             <label class="form-label" for="validationTooltip01">Nombre del Programa</label>
-                            <select class="form-control select2" name="select" id="programa">
+                            <select class="select2 form-control" name="select" id="programa">
                                 <option value="" selected >Seleccione un Programa ...</option>
                                 <option value="Acuicultura">Acuicultura</option>
                                 <option value="Adminis. en Finanzas y Negocios Internac">Adminis. en Finanzas y Negocios Internac</option>
@@ -128,6 +128,7 @@
 </div> <!-- end col -->
 
 
+
 <script>
     
     $('.cargar_notas').on('click', function(){
@@ -137,7 +138,7 @@
         $.ajax({
             url:'{% url "cargue_notas" %}',
             beforeSend: function(){
-            	$("#contenedor_espec").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+            	$("#contenedor_all").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
             },
             type:'POST',
             data: {'periodo':peri,'semestre':seme, 'programa': prog},
@@ -145,7 +146,7 @@
         }).done(function(data){
             // console.log(data)
             setTimeout(function(){
-                $("#contenedor_espec").html(data);
+                $("#contenedor_all").html(data);
             // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
             },.2000);
 
@@ -163,7 +164,7 @@
         $.ajax({
             url:'{% url "estimar_grupos" %}',
             beforeSend: function(){
-            	$("#contenedor_espec").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+            	$("#contenedor_all").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
             },
             type:'POST',
             data: { 'periodo':peri,
@@ -176,7 +177,7 @@
         }).done(function(data){
             // console.log(data)
             setTimeout(function(){
-                $("#contenedor_espec").html(data);
+                $("#contenedor_all").html(data);
             // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
             },.2000);
 

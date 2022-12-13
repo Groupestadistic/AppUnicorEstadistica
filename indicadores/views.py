@@ -91,14 +91,15 @@ def cargue_notas(request):
 
     conexion = conexion_sql()
     print('entro a hacer la consulta')
-    resul_materias = pd.read_sql(consulta_result_materias,conexion, params=[periodo_consulta,semestre_consulta])
+    resumen = pd.read_sql(consulta_result_materias,conexion, params=[periodo_consulta,semestre_consulta])
     print('salio de la consulta')
     
 
     if programa_current != "":
-        resumen = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current)]
-    else:
-        resumen = resul_materias
+        resumen = resumen[(resumen['ProgramaEstudiante']==programa_current)]
+
+    #eliminar los duplicados de materias identicas,por ejemplo los cursos con laboratorio
+    resumen = resumen.drop_duplicates(subset=['people_code_id','ProgramaEstudiante','CodigoMateria','GRADE_ACTIVITY'], keep='first')
 
     resumen2 = resumen.groupby(['GRADE_ACTIVITY']).count().reset_index()[['GRADE_ACTIVITY','TipoDoc','GRADE_POINTS']]
     resumen2['porcentaje'] = round((resumen2['GRADE_POINTS']/resumen2['TipoDoc'])*100,2)
@@ -109,8 +110,8 @@ def cargue_notas(request):
     cargue_docente = resumen.copy()
     cargue_docente['Nom_Docente'] = cargue_docente['Nom_Docente'].fillna('SIN DOCENTE ASIGNADO')
     cargue_docente['Nom_Docente']  = cargue_docente['Nom_Docente'].str.upper()
-    cargados = pd.crosstab(cargue_docente.Nom_Docente, [cargue_docente.GRADE_ACTIVITY],aggfunc = ["count"], values = cargue_docente.GRADE_POINTS)
-    a_cargar = pd.crosstab(cargue_docente.Nom_Docente, [cargue_docente.GRADE_ACTIVITY])
+    cargados = pd.crosstab([cargue_docente.ProgramaEstudiante, cargue_docente.Nom_Docente], [cargue_docente.GRADE_ACTIVITY],aggfunc = ["count"], values = cargue_docente.GRADE_POINTS)
+    a_cargar = pd.crosstab([cargue_docente.ProgramaEstudiante, cargue_docente.Nom_Docente], [cargue_docente.GRADE_ACTIVITY])
     result_docente = round((cargados/a_cargar)*100,0)
     result_docente.columns = result_docente.columns.droplevel(0)
     result_docente.reset_index(inplace=True)
@@ -118,9 +119,9 @@ def cargue_notas(request):
     result_docente = result_docente.to_json(orient='records')
     result_docente = json.loads(result_docente)
 
-    print(result_docente)
+    # print(result_docente)
 
-    return render(request,'ajax/num_grupos/resumen.html', {'datas':data, 'cargue_docente':result_docente})
+    return render(request,'ajax/num_grupos/resumen.html', {'datas':data, 'cargue_docente':result_docente, 'programass':programa_current})
 
 
 
@@ -147,6 +148,9 @@ def estimar_grupos(request):
         resul_materias = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current)]
         cancelaciones = cancelaciones[cancelaciones['PROGRAMA']==programa_current]
     
+    #eliminar los duplicados de materias identicas,por ejemplo los cursos con laboratorio
+    resul_materias = resul_materias.drop_duplicates(subset=['people_code_id','ProgramaEstudiante','CodigoMateria','GRADE_ACTIVITY'], keep='first')
+
     prerequisitos.columns = ['Version', 'ProgramaNombre', 'Sem_materia', 'Clasificacion', 'MateriaSeq',
        'MateriaCodigo', 'MateriaNombre', 'MateriaCreditos', 'MateriaLogica',
        'MateriaSeIncluyeEnPga', 'PrerrequisitoParentecisAbrir',
@@ -241,3 +245,38 @@ def estimar_grupos(request):
     results = results.to_json(orient='records')
     results = json.loads(results)
     return render(request,'ajax/num_grupos/result_num_grupos.html', {'result_num_grupos':results})
+
+
+
+@method_decorator(csrf_exempt)
+def consulta_docente(request):
+    programa_current = request.POST['programa']
+    docente = request.POST['docente']
+    periodo_consulta = request.POST['periodo']
+    semestre_consulta = request.POST['semestre']
+
+    conexion = conexion_sql()
+    print('entro a hacer la consulta de docente')
+    resul_materias = pd.read_sql(consulta_result_materias,conexion, params=[periodo_consulta,semestre_consulta])
+    print('salio de la consulta de docente')
+    
+    resul_materias['Nom_Docente'] = resul_materias['Nom_Docente'].fillna('SIN DOCENTE ASIGNADO')
+    resul_materias['Nom_Docente']  = resul_materias['Nom_Docente'].str.upper()
+
+    cargue_docente = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current) & (resul_materias['Nom_Docente']==docente)]
+
+    #eliminar los duplicados de materias identicas,por ejemplo los cursos con laboratorio
+    cargue_docente = cargue_docente.drop_duplicates(subset=['people_code_id','ProgramaEstudiante','CodigoMateria','GRADE_ACTIVITY'], keep='first')
+
+    cargados = pd.crosstab([cargue_docente.Nombres, cargue_docente.NombreMateria], [cargue_docente.GRADE_ACTIVITY],aggfunc = ["count"], values = cargue_docente.GRADE_POINTS)
+    a_cargar = pd.crosstab([cargue_docente.Nombres, cargue_docente.NombreMateria], [cargue_docente.GRADE_ACTIVITY])
+    result_docente = round((cargados/a_cargar)*100,0)
+
+    result_docente.columns = result_docente.columns.droplevel(0)
+    result_docente.reset_index(inplace=True)
+
+    result_docente = result_docente.to_json(orient='records')
+    result_docente = json.loads(result_docente)
+    print(programa_current,docente)
+
+    return render(request,'ajax/num_grupos/consulta_docente.html', {'data_docentes':result_docente, 'docentes':docente, 'programas':programa_current})

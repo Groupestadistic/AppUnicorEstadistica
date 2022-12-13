@@ -36,5 +36,6 @@ urlpatterns = [
     path('zona_privada/',login_required(zona_privada), name='zona_privada'),
     path('zona_privada/num_grupos/',login_required(num_grupos), name='num_grupos'),
     path('zona_privada/cargue_notas/',login_required(cargue_notas), name='cargue_notas'),
-    path('zona_privada/estimar_grupos/',login_required(estimar_grupos), name='estimar_grupos')
+    path('zona_privada/estimar_grupos/',login_required(estimar_grupos), name='estimar_grupos'),
+    path('zona_privada/consulta_docente/',login_required(consulta_docente), name='consulta_docente')
 ]

@@ -12,7 +12,7 @@
                         <div class="text-white">
                             <h6 class="text-uppercase mb-3 font-size-16 text-white">{{ data.GRADE_ACTIVITY }}</h6>
                             <h2 class="mb-4 text-white">{{ data.porcentaje }}%</h2>
-                            <span class="ms-2">A CARGAR: <strong> {{ data.TipoDoc }} </strong></span> <span class="ms-2">|</span> <span class="ms-2">CARGADAS: <strong>{{ data.GRADE_POINTS }}</strong></span>
+                            <span >A CARGAR: <strong> {{ data.TipoDoc }} </strong></span> <span class="ms-2">|</span> <span class="ms-2">CARGADAS: <strong>{{ data.GRADE_POINTS }}</strong></span>
                         </div>
                     </div>
                 </div>
@@ -38,23 +38,29 @@
             <div class="card-body">
 
                 <h4 class="card-title">CARGUE DE NOTAS X DOCENTES X CORTE</h4>
-                <!-- <p class="card-title-desc">The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built. -->
+                <p class="card-title-desc">
+                    
+                    Docente:  <strong>Todos los Docentes del programa de {{ programass }} </strong> <br>
+                    Programa: <strong>{{ programass }}</strong> 
+                    
                 </p>
 
-                <table id="tabla1" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <table id="tabla1" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
+                            <th>Programa</th>
                             <th>Docente</th>
                             <th>Primer Corte (%)</th>
                             <th>Segundo corte (%)</th>
                             <th>Tercer Corte (%)</th>
-
                         </tr>
                     </thead>
 
                     <tbody>
                         {% for cargue_doc in cargue_docente %}
-                            <tr>
+                            
+                            <tr id="{{ cargue_doc.Nom_Docente }}" title ="{{ cargue_doc.ProgramaEstudiante }}" ondblclick="consulta_docente(this.id, this.title);">
+                                <td>{{ cargue_doc.ProgramaEstudiante }}</td>
                                 <td>{{ cargue_doc.Nom_Docente }}</td>
                                 <td>{{ cargue_doc.1Corte }}</td>
                                 <td>{{ cargue_doc.2Corte }}</td>
@@ -66,6 +72,10 @@
             </div>
         </div>
     </div>
+
+    <div class="col-6" id="content_docente_estudi">
+
+    </div>
     <!-- end col -->
 </div>
 <!-- end row -->
@@ -74,17 +84,47 @@
 
 <script>
     $(document).ready(function () {
-    $('#tabla1').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'print'
-        ],
+        $('#tabla1').DataTable({
+            select: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'print'
+            ],
 
-        "columnDefs": [
-                { "type": "numeric-comma", targets:3 }
-        ]
+            "columnDefs": [
+                    { "type": "numeric-comma", targets:3 }
+            ]
+        
+        });
     });
-});
+
+    function consulta_docente(name_docente, name_programa){
+
+        var peri =   document.getElementById('periodo').value;
+        var seme =   document.getElementById('semestre').value;
+
+        $.ajax({
+            url:'{% url "consulta_docente" %}',
+            beforeSend: function(){
+            	$("#content_docente_estudi").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+            },
+            type:'POST',
+            data: {'docente':name_docente,
+                   'programa': name_programa,
+                   'periodo':peri,
+                   'semestre':seme
+                },
+            dataType: 'html'
+        }).done(function(data){
+            // console.log(data)
+            setTimeout(function(){
+                $("#content_docente_estudi").html(data);
+            // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
+            },.2000);
+
+        });
+
+    };
 
 </script>
 
@@ -92,6 +132,8 @@
 <!-- Required datatable js -->
 <script src="{% static 'dist/assets/libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'dist/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+
 <!-- Buttons examples -->
 <script src="{% static 'dist/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
 <script src="{% static 'dist/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
