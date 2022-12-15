@@ -215,7 +215,7 @@
                         <div id="sidebar-menu">
                             <!-- Left Menu Start -->
                             <ul class="metismenu list-unstyled" id="side-menu">
-                                <li class="menu-title">Main</li>
+                                <li class="menu-title">Menu</li>
 
                                 <li>
                                     <a href="#" class="waves-effect num_grupos">
@@ -224,13 +224,13 @@
                                     </a>
                                 </li>
 
-                                <!-- <li>
-                                    <a href="index.html" class="waves-effect">
-                                        <i class="mdi mdi-view-dashboard"></i>
-                                        <span class="badge rounded-pill bg-primary float-end">2</span>
-                                        <span>Dashboard</span>
+                                <li>
+                                    <a href="#" class="waves-effect desercion">
+                                        <i class="mdi mdi-exit-run"></i>
+                                        <!-- <span class="badge rounded-pill bg-primary float-end">2</span> -->
+                                        <span>Desercion</span>
                                     </a>
-                                </li> -->
+                                </li>
 
                                 
                                 
@@ -284,24 +284,25 @@
     
             <script>
                 $('.num_grupos').on('click', function(){
-                
                     $.ajax({
                         url:'{% url "num_grupos" %}',
-                        // beforeSend: function(){
-                        // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
-                        // },
                         type:'POST',
                         data: {},
                         dataType: 'html'
                     }).done(function(data){
-                        // console.log(data)
-                        // setTimeout(function(){
                         $("#contenedor_global").html(data);
-                        // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
-                        // },.1000);
-
                     });
-                    
+                });
+
+                $('.desercion').on('click', function(){
+                    $.ajax({
+                        url:'{% url "desercion" %}',
+                        type:'POST',
+                        data: {},
+                        dataType: 'html'
+                    }).done(function(data){
+                        $("#contenedor_global").html(data);
+                    });
                 });
 
             </script>

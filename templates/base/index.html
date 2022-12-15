@@ -144,6 +144,8 @@
                                                 <a href="#" class="dropdown-item graduado">Graduados</a>
                                                 <a href="#" class="dropdown-item estudiantes_post">Postgrado</a>
                                                 <a href="#" class="dropdown-item tasa_graduacion">Tasa Graduación Pregrado</a>
+                                                <a href="#" class="dropdown-item tasa_deser_reten">Tasa de Deserción y Retención</a> 
+                                                <a href="#" class="dropdown-item valor_agregado">Valor Agregado</a>
                                             </div>
                                         </li>
 
@@ -222,7 +224,7 @@
 
                                         <!-- ESTRUCTURA FISICA -->
                                         <li class="nav-item dropdown">
-                                            <a style="text-align: center; opacity: 0.4;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
+                                            <a style="text-align: center;"  class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div>
                                                     <!-- <center> -->
@@ -232,7 +234,7 @@
                                                 Infraestructura  <br> Física
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-charts">
-                                            <!-- <a href="charts-morris.html" class="dropdown-item">Morris Chart</a> -->
+                                                <a href="#" class="dropdown-item aulas">Aulas</a>
                                             
                                             </div>
                                         </li>
@@ -480,6 +482,7 @@
                 
             });
 
+
             $('.graduado').on('click', function(){
                 
                 $.ajax({
@@ -522,6 +525,7 @@
                 });
                 
             });
+
 
             $('.investigacion').on('click', function(){
                 
@@ -582,6 +586,72 @@
                     // setTimeout(function(){
                     $("#contenedor_global").html(data);
                     $("#titulo_actual").html('<span class="text-success">Recursos Financieros > Recursos Financieros</span> ');
+                    // },.2000);
+
+                });
+                
+            });
+
+
+            $('.valor_agregado').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "valor_agregado" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > Valor Agregado</span>');
+                    // },.2000);
+
+                });
+                
+            });
+
+
+            $('.tasa_deser_reten').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "tasa_deser_reten" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Estudiantes > Tasa Graduación y Retención</span>');
+                    // },.2000);
+
+                });
+                
+            });
+
+            
+            $('.aulas').on('click', function(){
+                
+                $.ajax({
+                    url:'{% url "aulas" %}',
+                    // beforeSend: function(){
+                    // 	$("#contenedor_global").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+                    // },
+                    type:'POST',
+                    data: {},
+                    dataType: 'html'
+                }).done(function(data){
+                    // console.log(data)
+                    // setTimeout(function(){
+                    $("#contenedor_global").html(data);
+                    $("#titulo_actual").html('<span class="text-success">Infraestructura Física > Aulas</span> ');
                     // },.2000);
 
                 });

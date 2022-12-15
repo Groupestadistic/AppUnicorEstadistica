@@ -32,10 +32,19 @@ urlpatterns = [
     path('bienestar/', bienestar, name='bienestar'),
     path('recurso_financiero/', recurso_financiero, name='recurso_financiero'),
     path('tasa_graduacion/', tasa_graduacion, name='tasa_graduacion'),
+    path('aulas/', aulas, name='aulas'),
+    path('valor_agregado/', valor_agregado, name='valor_agregado'),
+    path('tasa_deser_reten/', tasa_deser_reten, name='tasa_deser_reten'),
+
+
+
 
     path('zona_privada/',login_required(zona_privada), name='zona_privada'),
     path('zona_privada/num_grupos/',login_required(num_grupos), name='num_grupos'),
     path('zona_privada/cargue_notas/',login_required(cargue_notas), name='cargue_notas'),
     path('zona_privada/estimar_grupos/',login_required(estimar_grupos), name='estimar_grupos'),
-    path('zona_privada/consulta_docente/',login_required(consulta_docente), name='consulta_docente')
+    path('zona_privada/consulta_docente/',login_required(consulta_docente), name='consulta_docente'),
+
+
+    path('zona_privada/desercion/',login_required(desercion), name='desercion')
 ]
