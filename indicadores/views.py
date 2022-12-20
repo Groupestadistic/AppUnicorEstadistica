@@ -1,9 +1,10 @@
 from email.mime import base
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-
+from django.http import HttpResponse, JsonResponse
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 import pyodbc
 import pymssql
@@ -11,8 +12,75 @@ import pandas as pd
 import urllib.parse
 from sqlalchemy import create_engine
 import json
+import math
+import openpyxl 
 
 from indicadores.consultas_sql import consulta_result_materias, consulta_prerequisitos, consulta_cancelaciones
+
+#ENVIO DE CORREOS MASIVOS
+@method_decorator(csrf_exempt)
+def EnviarMail(request):
+
+    # https://www.google.com/settings/security/lesssecureapps
+
+    print('entro a hacer consulta')
+    list_correos = pd.read_excel('C:/ENV/UNICOR/indicadores/correos.xlsx')
+    print('termino consulta')
+
+    num_correos = list_correos.shape[0]
+    max_correos = 400
+    parte_decimal, parte_entera = math.modf(num_correos/max_correos)
+
+
+    if int(parte_decimal) != 0:
+        parte_entera = int(parte_entera)+1
+    else:
+        parte_entera = int(parte_entera)
+
+    print('entro al ciclo')
+    for i in range(41,parte_entera):
+        print('Inicio Iteracion' + str(i))
+        lim_ini = int(i*max_correos)
+        lim_sup = int((i+1)*max_correos)
+
+        if i == parte_entera-1:
+            lista = list(list_correos.iloc[lim_ini:,:]['CORREOS'].unique())
+        else:
+            lista = list(list_correos.iloc[lim_ini:lim_sup,:]['CORREOS'].unique())
+
+
+        email = EmailMessage(
+            #ENCABEZADO
+            'Encuesta de satisfacción del usuario Dirección de Asuntos Financieros Universidad de Córdoba',
+
+            # content,#CUERPO DEL MENSAJE HECHO EN HTML
+            """Cordial saludo, para nosotros es importante conocer la percepción que usted tiene acerca de los servicios que ha utilizado de nuestro proceso. Por ello le invitamos a diligenciar la siguiente encuesta, la cual, nos permite medir el nivel de satisfacción que tienen los usuarios de los servicios ofrecidos en nuestro proceso. 
+            
+            Su opinión es valiosa para la mejora continua de los procesos de la institución.
+
+            Acceda al siguiente enlace: https://forms.gle/uhzMPdQ5JyqBeMFr6
+
+            Gracias, felices fiestas.""",
+            
+
+            #correo origen
+            settings.EMAIL_HOST_USER,
+
+            #correos destino
+            lista,
+        )
+
+        email.send()
+
+        print('Final Iteracion: '+str(i+1)+' de '+ str(parte_entera)+' se enviaron: '+str(len(lista))+' correos')
+
+
+    data = {}
+
+    return JsonResponse(data)
+
+
+
 
 # TABLEAU
 def index(request):
@@ -37,7 +105,6 @@ def docentes(request):
 @method_decorator(csrf_exempt)
 def graduado(request):
     return render(request,'ajax/estudiantes/graduado.html', {})
-
 
 @method_decorator(csrf_exempt)
 def investigacion(request):
@@ -142,7 +209,6 @@ def cargue_notas(request):
     return render(request,'ajax/num_grupos/resumen.html', {'datas':data, 'cargue_docente':result_docente, 'programass':programa_current})
 
 
-
 @method_decorator(csrf_exempt)
 def estimar_grupos(request):
     programa_current = request.POST['programa']
@@ -180,90 +246,95 @@ def estimar_grupos(request):
 
     programas = prerequisitos[prerequisitos['Preg_post']=='PREG']['ProgramaNombre'].unique()
     lista_gral = []
+
+    try:
     
-    for programa_current in programas:
-        print('pograma: ',programa_current )
-        # programa_current = 'Ingeniería Industrial'
-        pensum_programa = prerequisitos[(prerequisitos['ProgramaNombre']==programa_current) & (prerequisitos['Clasificacion'] == clasific_materia)]
-        versiones = sorted(pensum_programa['Version'].unique())
+        for programa_current in programas:
+            print('pograma: ',programa_current )
+            # programa_current = 'Ingeniería Industrial'
+            pensum_programa = prerequisitos[(prerequisitos['ProgramaNombre']==programa_current) & (prerequisitos['Clasificacion'] == clasific_materia)]
+            versiones = sorted(pensum_programa['Version'].unique())
 
-        semestres = pensum_programa['Sem_materia'].unique()
+            semestres = pensum_programa['Sem_materia'].unique()
 
-        for versi in versiones:
-            for semestre in semestres:
-                print('numero de semestre : ', semestre)
-                materias = pensum_programa[(pensum_programa['Sem_materia']== semestre) & (pensum_programa['Version'] == versi)]
-                
-                for materia in materias['MateriaCodigo'].unique():
-
-                    # hallar cantidad de estudiantes que cancelaron
-                    cant_cancelaciones = cancelaciones[(cancelaciones['PROGRAMA']==programa_current) & (cancelaciones['ID_ASIGNATURA_CANCELADA']==materia)]['ESTUDIANTE'].count()
+            for versi in versiones:
+                for semestre in semestres:
+                    print('numero de semestre : ', semestre)
+                    materias = pensum_programa[(pensum_programa['Sem_materia']== semestre) & (pensum_programa['Version'] == versi)]
                     
-                    # listado de estudiantes que perdieron materia [1 si perdio ; 0 si gano]
-                    prom_materias = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current) & (resul_materias['CodigoMateria']==materia) & ((resul_materias['GRADE_ACTIVITY']=='1Corte')|(resul_materias['GRADE_ACTIVITY']=='2Corte')|(resul_materias['GRADE_ACTIVITY']=='3Corte'))].groupby('people_code_id')['GRADE_POINTS'].mean().apply(lambda x: 0 if x>=3 else 1)
-                    
-                    # hallar cantidad de estudiantes que van perdidos hasta este momento
-                    cant_mat_perdidas= sum(prom_materias)
+                    for materia in materias['MateriaCodigo'].unique():
+
+                        # hallar cantidad de estudiantes que cancelaron
+                        cant_cancelaciones = cancelaciones[(cancelaciones['PROGRAMA']==programa_current) & (cancelaciones['ID_ASIGNATURA_CANCELADA']==materia)]['ESTUDIANTE'].count()
+                        
+                        # listado de estudiantes que perdieron materia [1 si perdio ; 0 si gano]
+                        prom_materias = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current) & (resul_materias['CodigoMateria']==materia) & ((resul_materias['GRADE_ACTIVITY']=='1Corte')|(resul_materias['GRADE_ACTIVITY']=='2Corte')|(resul_materias['GRADE_ACTIVITY']=='3Corte'))].groupby('people_code_id')['GRADE_POINTS'].mean().apply(lambda x: 0 if x>=3 else 1)
+                        
+                        # hallar cantidad de estudiantes que van perdidos hasta este momento
+                        cant_mat_perdidas= sum(prom_materias)
 
 
-                    #hallar los prerequisitos de cada materia
-                    pre_requi = materias[materias['MateriaCodigo']==materia]
-                    pre_requisitos_materia = pre_requi.groupby('PrerrequisitoCodigo')['Sem_materia'].count().index.values
-                    condicion_prere = pre_requi['PrerrequisitoOperadorLogico'].unique()
+                        #hallar los prerequisitos de cada materia
+                        pre_requi = materias[materias['MateriaCodigo']==materia]
+                        pre_requisitos_materia = pre_requi.groupby('PrerrequisitoCodigo')['Sem_materia'].count().index.values
+                        condicion_prere = pre_requi['PrerrequisitoOperadorLogico'].unique()
 
-                    name_materia = pre_requi['MateriaNombre'].unique()[0]
+                        name_materia = pre_requi['MateriaNombre'].unique()[0]
 
-                    lista_prere = []
-                    for pre_materia in pre_requisitos_materia:
+                        lista_prere = []
+                        for pre_materia in pre_requisitos_materia:
 
-                        prom_materias_pre = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current) & (resul_materias['CodigoMateria']==pre_materia) & ((resul_materias['GRADE_ACTIVITY']=='1Corte')|(resul_materias['GRADE_ACTIVITY']=='2Corte')|(resul_materias['GRADE_ACTIVITY']=='3Corte'))].groupby('people_code_id')['GRADE_POINTS'].mean()
+                            prom_materias_pre = resul_materias[(resul_materias['ProgramaEstudiante']==programa_current) & (resul_materias['CodigoMateria']==pre_materia) & ((resul_materias['GRADE_ACTIVITY']=='1Corte')|(resul_materias['GRADE_ACTIVITY']=='2Corte')|(resul_materias['GRADE_ACTIVITY']=='3Corte'))].groupby('people_code_id')['GRADE_POINTS'].mean()
 
-                        # list_ganaron = list(filter(lambda x: prom_materias_pre[x]>=3,prom_materias_pre.index.values))
-                        list_ganaron = set([id for id in prom_materias_pre.index.values if prom_materias_pre[id] >= 3])
-                        lista_prere.append(list_ganaron)
+                            # list_ganaron = list(filter(lambda x: prom_materias_pre[x]>=3,prom_materias_pre.index.values))
+                            list_ganaron = set([id for id in prom_materias_pre.index.values if prom_materias_pre[id] >= 3])
+                            lista_prere.append(list_ganaron)
 
-                    
-                    if semestre == '1' and len(prom_materias)==0:
-                        cont_estudi_ganan_pre = 0
-                    elif semestre == '1' and len(prom_materias)!=0:
-                        cont_estudi_ganan_pre = est_nuevo_ingreso
-                    else:
-                        if len(lista_prere)==0:
+                        
+                        if semestre == '1' and len(prom_materias)==0:
                             cont_estudi_ganan_pre = 0
-                        elif len(lista_prere)==1:
-                            estudi_ganan_pre = lista_prere[0]
-                            cont_estudi_ganan_pre = len(estudi_ganan_pre)
+                        elif semestre == '1' and len(prom_materias)!=0:
+                            cont_estudi_ganan_pre = est_nuevo_ingreso
                         else:
-                            estudi_ganan_pre = lista_prere[0]
-
-                            if 'O' in condicion_prere:
-                                for i in range(1, len(lista_prere)):
-                                    estudi_ganan_pre = estudi_ganan_pre | lista_prere[i]
+                            if len(lista_prere)==0:
+                                cont_estudi_ganan_pre = 0
+                            elif len(lista_prere)==1:
+                                estudi_ganan_pre = lista_prere[0]
+                                cont_estudi_ganan_pre = len(estudi_ganan_pre)
                             else:
-                                for i in range(1, len(lista_prere)):
-                                    estudi_ganan_pre = estudi_ganan_pre & lista_prere[i]
-                            
-                            cont_estudi_ganan_pre = len(estudi_ganan_pre)
-                    print(cant_cancelaciones,cant_mat_perdidas, cont_estudi_ganan_pre)
-                    tot = int(cant_cancelaciones) + int(cant_mat_perdidas) + int(cont_estudi_ganan_pre)
-                    lista_gral.append([programa_current,versi, semestre, materia, name_materia, len(lista_prere),cant_cancelaciones,cant_mat_perdidas,cont_estudi_ganan_pre,len(prom_materias), tot, tot/cap_grupo,])
-                    # mostrar resultado
-                    # print(str(semestre) +' '+ str(materia) +' '+ str(cant_cancelaciones) + ' ' + str(cant_mat_perdidas) + ' ' +  str(cont_estudi_ganan_pre)  + ' ' +  str(len(prom_materias)))
+                                estudi_ganan_pre = lista_prere[0]
 
-    results = pd.DataFrame(lista_gral)
-    results.columns=['Programa','Version','semestre','cod_materia','Name_materia','Cantidad_Prerequisitos','cancelaciones','perdidas','ganadores_prerequisitos','matriculados', 'Estudi_para_nuevo_grupos','Num_Grupos']
-    # dta.to_excel('data_pre_industrial.xlsx')
+                                if 'O' in condicion_prere:
+                                    for i in range(1, len(lista_prere)):
+                                        estudi_ganan_pre = estudi_ganan_pre | lista_prere[i]
+                                else:
+                                    for i in range(1, len(lista_prere)):
+                                        estudi_ganan_pre = estudi_ganan_pre & lista_prere[i]
+                                
+                                cont_estudi_ganan_pre = len(estudi_ganan_pre)
+                        print(cant_cancelaciones,cant_mat_perdidas, cont_estudi_ganan_pre)
+                        tot = int(cant_cancelaciones) + int(cant_mat_perdidas) + int(cont_estudi_ganan_pre)
+                        lista_gral.append([programa_current,versi, semestre, materia, name_materia, len(lista_prere),cant_cancelaciones,cant_mat_perdidas,cont_estudi_ganan_pre,len(prom_materias), tot, tot/cap_grupo,])
+                        # mostrar resultado
+                        # print(str(semestre) +' '+ str(materia) +' '+ str(cant_cancelaciones) + ' ' + str(cant_mat_perdidas) + ' ' +  str(cont_estudi_ganan_pre)  + ' ' +  str(len(prom_materias)))
 
+        results = pd.DataFrame(lista_gral)
+        results.columns=['Programa','Version','semestre','cod_materia','Name_materia','Cantidad_Prerequisitos','cancelaciones','perdidas','ganadores_prerequisitos','matriculados', 'Estudi_para_nuevo_grupos','Num_Grupos']
+        # dta.to_excel('data_pre_industrial.xlsx')
 
-    # response = HttpResponse(content_type='text/csv')
-    # response['Content-Disposition'] = 'attachment; filename=filename.csv'
-    # results.to_csv(path_or_buf=response,sep=';',float_format='%.2f',index=False,decimal=",")
-    # return response
+        print('este es el data set resultante:')
+        print(results)
+        # response = HttpResponse(content_type='text/csv')
+        # response['Content-Disposition'] = 'attachment; filename=filename.csv'
+        # results.to_csv(path_or_buf=response,sep=';',float_format='%.2f',index=False,decimal=",")
+        # return response
 
-    results = results.to_json(orient='records')
-    results = json.loads(results)
-    return render(request,'ajax/num_grupos/result_num_grupos.html', {'result_num_grupos':results})
-
+        results = results.to_json(orient='records')
+        results = json.loads(results)
+        return render(request,'ajax/num_grupos/result_num_grupos.html', {'result_num_grupos':results})
+    except Exception as e:
+        print('hubo un error en el recorrido de la consulta, ', e)
+        return render(request,'ajax/num_grupos/result_num_grupos.html', {'error':'hubo un error'})
 
 
 @method_decorator(csrf_exempt)

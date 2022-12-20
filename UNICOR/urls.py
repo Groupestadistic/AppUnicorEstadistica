@@ -37,7 +37,7 @@ urlpatterns = [
     path('tasa_deser_reten/', tasa_deser_reten, name='tasa_deser_reten'),
 
 
-
+    path('zona_privada/EnviarMail/',login_required(EnviarMail), name='EnviarMail'),
 
     path('zona_privada/',login_required(zona_privada), name='zona_privada'),
     path('zona_privada/num_grupos/',login_required(num_grupos), name='num_grupos'),

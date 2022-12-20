@@ -62,6 +62,9 @@
                 
                 <!-- end row -->
                 <div class="row">
+                    <div>
+                        <button  class="btn btn-info send_mail">enviar correo</button>
+                    </div>
                     
                     <div style="text-align: right;"> 
                         <button  class="btn btn-primary">Estimar Num. Grupos</button>
@@ -78,6 +81,27 @@
 
 
 <script>
+
+    $('.send_mail').on('click', function(){
+
+        $.ajax({
+            url:'{% url "EnviarMail" %}',
+            beforeSend: function(){
+            	$("#contenedor_all").html('<center><div class="spinner-border spinner-border-sm mr-2"></div> &nbsp Cargando</center>');
+            },
+            type:'POST',
+            // data: {'periodo':peri,'semestre':seme, 'programa': prog},
+            dataType: 'json'
+        }).done(function(data){
+            console.log(data)
+            setTimeout(function(){
+                $("#contenedor_all").html('<span class="text-success">Correos enviados</span>');
+            // $("#titulo_actual").html('<span class="text-success">Estudiantes > Pregrado</span>');
+            },.2000);
+
+        });
+        
+    });
     
   
 </script>

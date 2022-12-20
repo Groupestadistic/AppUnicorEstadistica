@@ -66,6 +66,13 @@
 
 {% endif %}
 
+{% if error %}
+    <div class="card">
+        <p>hubo un error</p>
+        <p>{{ error }}</p>
+    </div>
+{% endif %}
+
 <script>
     $(document).ready(function () {
     $('#tabla1').DataTable({
